@@ -1,5 +1,5 @@
 # Interactive Fractal Animation
-This React application can be manipulated by the user.
+This React application generates a tree-like fractal animation that can be manipulated by the user.
 
 ## How Was It Built?
 I use the [React Armory tutorial](https://reactarmory.com/guides/learn-react-by-itself/react-basics) as a boilerplate, then add my own functionality on top.
