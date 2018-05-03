@@ -6,7 +6,9 @@ import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
 // from React Armory tutorial
-import { getBoxStyle } from './PythagorasTree.js'
+import { getBoxStyle } from './PythagorasTree.js';
+
+let time = 0;
 
 const TreeBox = (props) => {
   const style = getBoxStyle(props);
@@ -30,15 +32,23 @@ const TreeBox = (props) => {
   )
 }
 
-ReactDOM.render(
-  React.createElement(TreeBox, { 
-    level: 0,
-    totalLevels: 7,
-    heightFactor: 0.27,
-    lean: -0.20, 
-    size: 200,
-  }),
-  document.getElementById('root')
-)
+setInterval(() => {
+  time += 1;
+  
+  ReactDOM.render(
+    React.createElement(TreeBox, { 
+      level: 0,
+      totalLevels: 8,
+      heightFactor: 0.77,
+      lean: 0.2*Math.sin(time / 50), 
+      size: 100,
+    }),
+    document.getElementById('root')
+    
+
+  );
+  
+}, 50);
+  
     
 registerServiceWorker();
