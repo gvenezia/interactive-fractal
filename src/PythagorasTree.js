@@ -1,8 +1,4 @@
-/**
- * This file defines somes components that are used for the
- * demo in main.js. It is ok if you don't understand this,
- * we'll get to the important bits later.
- */
+// Boilerplate from React Armory: https://reactarmory.com/guides/learn-react-by-itself/react-basics
 import React from 'react';
 
 export class PythagorasTree extends React.Component {

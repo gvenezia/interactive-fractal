@@ -44,8 +44,6 @@ setInterval(() => {
       size: 100,
     }),
     document.getElementById('root')
-    
-
   );
   
 }, 50);
