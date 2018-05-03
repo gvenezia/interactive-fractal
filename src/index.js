@@ -8,37 +8,21 @@ import registerServiceWorker from './registerServiceWorker';
 // from React Armory tutorial
 import { getBoxStyle } from './PythagorasTree.js'
 
-// Don't set `totalLevels` above 8 -- your browser will
-// freeze due to the amount of work required.
-let totalLevels = 2
-let heightFactor = 0.37
-let lean = -0.10
-let size = 100
-
 const TreeBox = (props) => {
-  const style = getBoxStyle({
-    level: props.level,
-    right: props.right,
-    left: props.left,
-    heightFactor,
-    lean,
-    size,
-    totalLevels,
-  })
+  const style = getBoxStyle(props);
+  const baseProps = Object.assign({}, props, {level: props.level + 1});
   
   const leftChild = 
-    props.level < totalLevels &&
-    React.createElement(TreeBox, {
-        left: true,
-        level: props.level + 1,
-    });
+    props.level < props.totalLevels &&
+    React.createElement(TreeBox, 
+      Object.assign({}, baseProps, {right: false})
+    );
 
   const rightChild =
-    props.level < totalLevels &&
-    React.createElement(TreeBox, {
-        right: true,
-        level: props.level + 1,
-    });
+    props.level < props.totalLevels &&
+    React.createElement(TreeBox, 
+      Object.assign({}, baseProps, {right: true})
+    );
 
   return React.createElement('div', { style },
     leftChild,
@@ -47,7 +31,13 @@ const TreeBox = (props) => {
 }
 
 ReactDOM.render(
-  React.createElement(TreeBox, { level: 0 }),
+  React.createElement(TreeBox, { 
+    level: 0,
+    totalLevels: 7,
+    heightFactor: 0.27,
+    lean: -0.20, 
+    size: 200,
+  }),
   document.getElementById('root')
 )
     
