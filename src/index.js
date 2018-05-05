@@ -10,6 +10,23 @@ import { getBoxStyle } from './PythagorasTree.js';
 
 let time = 0;
 
+class AnimatedTree extends React.component {
+  constructor(props) {
+    super(props);
+    
+    this.toggle = this.toggle.bind(this);
+    
+    this.state = {
+      time: 0,
+      active: 0
+    }
+  }
+  
+  render() {
+    return React.createElement();
+  }
+}
+
 const TreeBox = (props) => {
   const style = getBoxStyle(props);
   const baseProps = Object.assign({}, props, {level: props.level + 1});
