@@ -27,6 +27,11 @@ class AnimatedTree extends React.component {
   }
 }
 
+ReactDOM.render(
+  React.createElement(AnimatedTree, {sway: 0.01, sprout: 0.05}),
+  document.getElementById('root')
+);
+
 const TreeBox = (props) => {
   const style = getBoxStyle(props);
   const baseProps = Object.assign({}, props, {level: props.level + 1});
