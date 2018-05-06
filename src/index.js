@@ -5,10 +5,9 @@ import './index.css';
 // import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-// from React Armory tutorial
+// Import pre-set components from React Armory tutorial
 import { getBoxStyle } from './PythagorasTree.js';
-
-let time = 0;
+import { Timer } from './Timer.js';
 
 class AnimatedTree extends React.component {
   constructor(props) {
@@ -21,7 +20,6 @@ class AnimatedTree extends React.component {
       active: 0
     }
     
-    // Timer will be added in a separate file
     this.timer = new Timer (() => {
       const {time, active} = this.timer;
       this.setState({time, active});
@@ -29,9 +27,15 @@ class AnimatedTree extends React.component {
   };
   
   toggle() {
-    this.state.active ?
-    1 : // stop timer
-    0; // start timer
+    if (this.state.active){
+      this.timer.stop();
+      this.setState({active: false});
+    } else {
+      this.timer.start();
+      this.setState({active:true});
+    }
+    
+    
   }
   
   render() {
