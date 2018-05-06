@@ -1,4 +1,5 @@
-// Boilerplate from React Armory: https://reactarmory.com/guides/learn-react-by-itself/react-basics
+// Pre-set component from React Armory: https://reactarmory.com/guides/learn-react-by-itself/react-basics
+
 import React from 'react';
 
 export class PythagorasTree extends React.Component {
