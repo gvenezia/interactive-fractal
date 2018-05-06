@@ -20,6 +20,18 @@ class AnimatedTree extends React.component {
       time: 0,
       active: 0
     }
+    
+    // Timer will be added in a separate file
+    this.timer = new Timer (() => {
+      const {time, active} = this.timer;
+      this.setState({time, active});
+    });
+  };
+  
+  toggle() {
+    this.state.active ?
+    1 : // stop timer
+    0; // start timer
   }
   
   render() {
@@ -32,6 +44,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// ==================================
+// Old static tree
 const TreeBox = (props) => {
   const style = getBoxStyle(props);
   const baseProps = Object.assign({}, props, {level: props.level + 1});
