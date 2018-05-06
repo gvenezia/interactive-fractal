@@ -1,7 +1,9 @@
+// =============================================================
 // create-react-app boilerplate
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
 // import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -9,17 +11,21 @@ import registerServiceWorker from './registerServiceWorker';
 import { getBoxStyle } from './PythagorasTree.js';
 import { Timer } from './Timer.js';
 
+// =============================================================
 class AnimatedTree extends React.component {
   constructor(props) {
     super(props);
     
+    // Bind toggle
     this.toggle = this.toggle.bind(this);
     
+    // State
     this.state = {
       time: 0,
-      active: 0
-    }
+      active: false
+    };
     
+    // Add Timer component
     this.timer = new Timer (() => {
       const {time, active} = this.timer;
       this.setState({time, active});
@@ -34,15 +40,24 @@ class AnimatedTree extends React.component {
       this.timer.start();
       this.setState({active:true});
     }
-    
-    
   }
   
   render() {
-    return React.createElement();
-  }
-}
+    const buttonText = this.state.active ? 'Stop Animation' : 'Start Animation';
+    
+    return React.createElement('div', {},
+      React.createElement(TreeBox, {
+        totalLevels: 6,
+        size: 100,
+        heightFactor: 0.2 + 0.1*Math.sin(this.state.time),
+        lean: 0.4*Math.sin(this.state.time / 50), 
+      }),
+      React.createElement('button', {onClick: this.toggle}, buttonText)
+    );
+  } // end render
+} // End AnimatedTree
 
+// ===============================================================
 ReactDOM.render(
   React.createElement(AnimatedTree, {sway: 0.01, sprout: 0.05}),
   document.getElementById('root')
