@@ -45,18 +45,23 @@ class AnimatedTree extends React.Component {
   
   render() {
     const buttonText = this.state.active ? 'Stop Animation' : 'Start Animation';
-    
-    return React.createElement('div', {},
-      React.createElement(TreeBox, {
+    const treeProps = {
         level: 0,
-        totalLevels: 8,
-        size: 200,
+        totalLevels: 5,
+        size: 100,
         heightFactor: 0.3 + 0.1*Math.sin(this.state.time)*this.props.sprout + 0.3,
         lean: 10.0*Math.sin(this.state.time/5)*this.props.sway 
-      }),
-      React.createElement('button', {onClick: this.toggle}, buttonText)
-    );
-  } // end render
+      };
+  
+    return (
+      <div>
+        <TreeBox {...treeProps} />
+        <button onClick={this.toggle} >
+          {buttonText}
+        </button>
+      </div>
+    ); // end return
+  }; // end render
 } // End AnimatedTree
 
 const TreeBox = (props) => {
@@ -65,21 +70,23 @@ const TreeBox = (props) => {
   
   const leftChild = 
     props.level < props.totalLevels &&
-    React.createElement(TreeBox, Object.assign({}, baseProps, {right: false}) );
+    <TreeBox {...baseProps} right={false} /> // Uses JSX spread attribute, 'right=' overrides the 'right:' in baseProps
 
   const rightChild =
     props.level < props.totalLevels &&
-    React.createElement(TreeBox, Object.assign({}, baseProps, {right: true}) );
+    <TreeBox {...baseProps} right={true} /> 
 
-  return React.createElement('div', { style },
-    leftChild,
-    rightChild
-  )
+  return (
+  <div style={ style }>
+    {leftChild}
+    {rightChild}
+  </div>
+  );
 } // End TreeBox
 
 // DOM Render
 // ===============================================================
 ReactDOM.render(
-  React.createElement(AnimatedTree, {sway: 0.1, sprout: 0.5}),
+  <AnimatedTree sway={0.1} sprout={0.5} />,
   document.getElementById('root')
 );
