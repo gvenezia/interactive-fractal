@@ -1,4 +1,5 @@
 // Pre-set component from React Armory: https://reactarmory.com/guides/learn-react-by-itself/react-basics
+// I just edited the color variables for the interpolateColors function
 
 import React from 'react';
 

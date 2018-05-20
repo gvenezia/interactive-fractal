@@ -1,5 +1,13 @@
-body {
+html,body {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   font-family: sans-serif;
+  height: 100%;
+  background-image: linear-gradient(to bottom, #5e9fff, #0099dc, #00889c, #007251, #0e5808);
+}
+
+button, input {
+  opacity: .8;
+  font-size: 20px;
+  font-weight: 200;
 }
