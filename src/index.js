@@ -9,6 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 // Import pre-set components from React Armory tutorial
 import { getBoxStyle } from './PythagorasTree.js';
+import { NumericInput } from './PythagorasTree.js';
 import { Timer } from './Timer.js';
 
 // React Components
@@ -17,13 +18,15 @@ class AnimatedTree extends React.Component {
   constructor(props) {
     super(props);
     
-    // Bind toggle
+    // Bind toggle and setSway
     this.toggle = this.toggle.bind(this);
+    this.setSway= this.setSway.bind(this);
     
     // State
     this.state = {
       time: 0,
-      active: false
+      active: false,
+      sway: .001
     };
     
     // Add Timer component
@@ -43,6 +46,10 @@ class AnimatedTree extends React.Component {
     }
   }
   
+  setSway(value){
+    this.setState({sway: value});
+    }
+  
   render() {
     const buttonText = this.state.active ? 'Stop Animation' : 'Start Animation';
     const treeProps = {
@@ -50,7 +57,7 @@ class AnimatedTree extends React.Component {
         totalLevels: 5,
         size: 100,
         heightFactor: 0.3 + 0.1*Math.sin(this.state.time)*this.props.sprout + 0.3,
-        lean: 10.0*Math.sin(this.state.time/5)*this.props.sway 
+        lean: 10.0*Math.sin(this.state.time/5)*this.state.sway 
       };
   
     return (
@@ -59,6 +66,10 @@ class AnimatedTree extends React.Component {
         <button onClick={this.toggle} >
           {buttonText}
         </button>
+        <NumericInput 
+          value={this.state.sway}
+          onChange={this.setSway}
+        />
       </div>
     ); // end return
   }; // end render
@@ -87,6 +98,6 @@ const TreeBox = (props) => {
 // DOM Render
 // ===============================================================
 ReactDOM.render(
-  <AnimatedTree sway={0.1} sprout={0.5} />,
+  <AnimatedTree sprout={0.5} />,
   document.getElementById('root')
 );

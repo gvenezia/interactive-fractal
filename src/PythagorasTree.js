@@ -160,7 +160,7 @@ TreeBox.defaultProps = {
 
 
 export function getBoxStyle({ size, heightFactor, left, lean, level, totalLevels, right }) {
-  const color = interpolateColor((level/totalLevels)**2, 80, 120, 54, 240, 104, 64)
+  const color = interpolateColor((level/totalLevels)**2, 0, 210, 34, 240, 4, 64)
   const scale = right
       ? Math.sqrt((size*heightFactor)**2 + (size * (0.5+lean))**2) / size
       : Math.sqrt((size*heightFactor)**2 + (size * (0.5-lean))**2) / size
