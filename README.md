@@ -1,6 +1,8 @@
 # Interactive Fractal Animation
 This React application generates a tree-like fractal animation that can be manipulated by the user. The tree "sways" back and forth and "sprouts" up and down. Users can stop/start the animation, plus manipulate the "sway" and "sprout" values in real-time.
 
+[Check it out!](https://gvenezia.github.io/interactive-fractal/) (Hosted on GitHub Pages)
+
 ## How Was It Built?
 I use the [React Armory tutorial](https://reactarmory.com/guides/learn-react-by-itself/react-basics) as a boilerplate, then add my own functionality on top.
 
