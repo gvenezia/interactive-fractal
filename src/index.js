@@ -4,9 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-
 // Import pre-set components from React Armory tutorial
 import { getBoxStyle } from './PythagorasTree.js';
 import { NumericInput } from './PythagorasTree.js';
@@ -21,12 +18,14 @@ class AnimatedTree extends React.Component {
     // Bind toggle and setSway
     this.toggle = this.toggle.bind(this);
     this.setSway= this.setSway.bind(this);
+    this.setSprout= this.setSprout.bind(this);
     
     // State
     this.state = {
       time: 0,
       active: false,
-      sway: .001
+      sway: .001,
+      sprout: .5
     };
     
     // Add Timer component
@@ -49,6 +48,10 @@ class AnimatedTree extends React.Component {
   setSway(value){
     this.setState({sway: value});
     }
+    
+  setSprout(value){
+    this.setState({sprout: value});
+  }
   
   render() {
     const buttonText = this.state.active ? 'Stop Animation' : 'Start Animation';
@@ -56,7 +59,7 @@ class AnimatedTree extends React.Component {
         level: 0,
         totalLevels: 5,
         size: 100,
-        heightFactor: 0.3 + 0.1*Math.sin(this.state.time)*this.props.sprout + 0.3,
+        heightFactor: 0.3 + 0.1*Math.sin(this.state.time)*this.state.sprout + 0.3,
         lean: 10.0*Math.sin(this.state.time/5)*this.state.sway 
       };
   
@@ -66,10 +69,20 @@ class AnimatedTree extends React.Component {
         <button onClick={this.toggle} >
           {buttonText}
         </button>
-        <NumericInput 
-          value={this.state.sway}
-          onChange={this.setSway}
-        />
+        <h4>
+          Set Sway
+          <NumericInput 
+            value={this.state.sway}
+            onChange={this.setSway}
+          />
+        </h4>
+        <h4>
+          Set Sprout
+          <NumericInput 
+            value={this.state.sprout}
+            onChange={this.setSprout}
+          />
+        </h4> 
       </div>
     ); // end return
   }; // end render
@@ -98,6 +111,6 @@ const TreeBox = (props) => {
 // DOM Render
 // ===============================================================
 ReactDOM.render(
-  <AnimatedTree sprout={0.5} />,
+  <AnimatedTree />,
   document.getElementById('root')
 );
