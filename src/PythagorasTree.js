@@ -43,8 +43,8 @@ export function NumericInput({ value, onChange }) {
 
   return (
     <div>
-      <button type='button' onClick={decreaseSway}>&lt;</button>
-      <input value={value} onChange={setSway} />
+      <button type='button' onClick={decreaseSway}>&lt;</button>&nbsp; 
+      <input value={value} onChange={setSway} /> &nbsp;
       <button type='button' onClick={increaseSway}>&gt;</button>
     </div>
   )
